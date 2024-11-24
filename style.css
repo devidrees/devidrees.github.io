@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: Montserrat, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -7,7 +9,7 @@ body {
 }
 
 header {
-    background: #0073e6;
+    background: #002147;
     color: white;
     padding: 2rem 0;
     text-align: center;
@@ -18,16 +20,18 @@ header h1 span {
 }
 
 nav ul {
-    background: #444;
+    background: #002147;
     display: flex;
     justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 nav ul li {
     margin: 0;
+    position: relative;
 }
 
 nav ul li a {
@@ -35,11 +39,54 @@ nav ul li a {
     display: block;
     padding: 1rem 2rem;
     text-decoration: none;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+nav ul li a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffdd00;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+    border-radius: 15px;
+}
+
+nav ul li a:hover::before {
+    transform: scaleX(1);
+    transform-origin: top left;
 }
 
 nav ul li a:hover {
-    background: #0073e6;
+    color: #2e2e2e;
 }
+
+/* Dynamic hover effect for left-to-right and right-to-left hover */
+nav ul li a:hover::before {
+    transform: scaleX(1);
+    transform-origin: top left; /* Default (from right) */
+}
+
+/* Detecting where the mouse enters: Left or Right */
+nav ul li a:hover.left::before {
+    transform-origin: top right; /* From left to right */
+}
+
+nav ul li a:hover.right::before {
+    transform-origin: top left; /* Default, right to left */
+}
+
+
+
+
 
 .container {
     width: 80%;
